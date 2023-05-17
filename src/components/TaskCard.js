@@ -29,9 +29,11 @@ function TaskCard({ data, onDelete, index, onSave }) {
     return (
       <>
         <div>
-          <div className="title">{data.title}</div>
+          <div className="title"> {data.title.length < 10
+              ? data.title
+              : data.title.substring(0, 10) + "..."}</div>
           <div className="desc">
-            {data.desc.length < 10
+            {data.desc.length < 20
               ? data.desc
               : data.desc.substring(0, 20) + "..."}
           </div>
