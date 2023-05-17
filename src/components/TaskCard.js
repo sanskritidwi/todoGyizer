@@ -28,7 +28,6 @@ function TaskCard({ data, onDelete, index, onSave }) {
   const renderCard = () => {
     return (
       <>
-        {" "}
         <div>
           <div className="title">{data.title}</div>
           <div className="desc">
@@ -38,7 +37,6 @@ function TaskCard({ data, onDelete, index, onSave }) {
           </div>
         </div>
         <div>
-        
           <button
             className="addBtn"
             onClick={() => {
@@ -60,11 +58,11 @@ function TaskCard({ data, onDelete, index, onSave }) {
     );
   };
 
-  return (
-    <div className="TaskCardWrapper">
-      {renderCard()}
-
-      {isDeletePopupOpen && (
+  const renderDeletePopup = () => {
+    if (!isDeletePopupOpen) return null;
+    return (
+      <>
+        {" "}
         <div className="popup">
           <div className="popup-content">
             <div>Delete this task?</div>
@@ -76,8 +74,14 @@ function TaskCard({ data, onDelete, index, onSave }) {
             </button>
           </div>
         </div>
-      )}
-      {isEditPopupOpen && (
+      </>
+    );
+  };
+
+  const renderEditPopup = () => {
+    if (!isEditPopupOpen) return null;
+    return (
+      <>
         <div className="popup">
           <div className="popup-content">
             <div>
@@ -109,7 +113,15 @@ function TaskCard({ data, onDelete, index, onSave }) {
             </button>
           </div>
         </div>
-      )}
+      </>
+    );
+  };
+
+  return (
+    <div className="TaskCardWrapper">
+      {renderCard()}
+      {renderDeletePopup()}
+      {renderEditPopup()}
     </div>
   );
 }
